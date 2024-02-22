@@ -22,22 +22,6 @@ from utils import (
 
 response.stream_to_file(speech_file_path)
 
-DEFAULT_TEXT = "This document reflects the strategy we’ve refined over the past two years, 
-
-including feedback from many people internal and external to OpenAI. The timeline to AGI remains uncertain, 
-
-but our Charter will guide us in acting in the best interests of humanity throughout its development.
-
-OpenAI’s mission is to ensure that artificial general intelligence (AGI)—by which we mean 
-
-highly autonomous systems that outperform humans at most economically valuable work—benefits all of humanity.
-
-We will attempt to directly build safe and beneficial AGI, but will also consider our mission fulfilled 
-
-if our work aids others to achieve this outcome. To that end, we commit to the following principles:
-
-Broadly distributed benefits "
-
 st.set_page_config(page_title="AI Text-to-Speech",
                    page_icon="🎙")
 
