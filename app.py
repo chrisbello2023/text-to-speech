@@ -3,32 +3,32 @@ app.py
 """
 import streamlit as st
 from openai import OpenAI
-from pathlib import Path
 
-from openai import OpenAI
-
-client = OpenAI()
-
-response = client.audio.speech.create(
-    model="tts-1",
-    voice="alloy",
-    input="Hello world! This is a streaming test.",
+from utils import (
+    append_to_sheet,
+    moderation_check,
+    text_to_speech,
+    zero_shot_nsfw_classifier
 )
 
-response.stream_to_file("output.mp3")
+DEFAULT_TEXT = """This document reflects the strategy we’ve refined over the past two years, including feedback from many people internal and external to OpenAI. The timeline to AGI remains uncertain, but our Charter will guide us in acting in the best interests of humanity throughout its development.
 
-# response.stream_to_file(speech_file_path)
+OpenAI’s mission is to ensure that artificial general intelligence (AGI)—by which we mean highly autonomous systems that outperform humans at most economically valuable work—benefits all of humanity. We will attempt to directly build safe and beneficial AGI, but will also consider our mission fulfilled if our work aids others to achieve this outcome. To that end, we commit to the following principles:
+Broadly distributed benefits
+
+"""
 
 st.set_page_config(page_title="AI Text-to-Speech",
                    page_icon="🎙")
 
 st.title("Try OpenAI's Text-to-Speech 🎙")
-
 with st.expander("About this app"):
     st.info("""
     This is a personal project, not affliated with OpenAI.
             
-    **Contact:**  or [LinkedIn](https://www.linkedin.com/in/tundechrisbello/)
+    **Is this really free?** I have some OpenAI API credits expiring on 1 March 2024. So... yes :)
+    
+      **Contact:**  or [LinkedIn](https://www.linkedin.com/in/tundechrisbello/)
     """)
     
 if "audio" not in st.session_state:
