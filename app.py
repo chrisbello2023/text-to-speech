@@ -3,7 +3,16 @@ app.py
 """
 import streamlit as st
 from openai import OpenAI
+from pathlib import Path
+from openai import OpenAI
+client = OpenAI()
 
+speech_file_path = Path(__file__).parent / "speech.mp3"
+response = client.audio.speech.create(
+  model="tts-1",
+  voice="alloy",
+  input="Today is a wonderful day to build something people love!"
+)
 from utils import (
     append_to_sheet,
     moderation_check,
@@ -11,7 +20,9 @@ from utils import (
     zero_shot_nsfw_classifier
 )
 
-DEFAULT_TEXT = """This document reflects the strategy we’ve refined over the past two years, 
+response.stream_to_file(speech_file_path)
+
+DEFAULT_TEXT = "This document reflects the strategy we’ve refined over the past two years, 
 
 including feedback from many people internal and external to OpenAI. The timeline to AGI remains uncertain, 
 
@@ -25,9 +36,7 @@ We will attempt to directly build safe and beneficial AGI, but will also conside
 
 if our work aids others to achieve this outcome. To that end, we commit to the following principles:
 
-Broadly distributed benefits
-
-"""
+Broadly distributed benefits "
 
 st.set_page_config(page_title="AI Text-to-Speech",
                    page_icon="🎙")
