@@ -44,9 +44,7 @@ with st.expander("About this app"):
     st.info("""
     This is a personal project, not affliated with OpenAI.
             
-    **Is this really free?** I have some OpenAI API credits expiring on 1 March 2024. So... yes :)
-    
-    **Contact:** [X](https://www.x.com/gabchuayz) or [LinkedIn](https://www.linkedin.com/in/gabriel-chua)
+    **Contact:**  or [LinkedIn](https://www.linkedin.com/in/tundechrisbello/)
     """)
     
 if "audio" not in st.session_state:
