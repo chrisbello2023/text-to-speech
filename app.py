@@ -4,28 +4,26 @@ app.py
 import streamlit as st
 from openai import OpenAI
 from pathlib import Path
+
 from openai import OpenAI
+
 client = OpenAI()
 
-speech_file_path = Path(__file__).parent / "speech.mp3"
 response = client.audio.speech.create(
-  model="tts-1",
-  voice="alloy",
-  input="Today is a wonderful day to build something people love!"
-)
-from utils import (
-    append_to_sheet,
-    moderation_check,
-    text_to_speech,
-    zero_shot_nsfw_classifier
+    model="tts-1",
+    voice="alloy",
+    input="Hello world! This is a streaming test.",
 )
 
-response.stream_to_file(speech_file_path)
+response.stream_to_file("output.mp3")
+
+# response.stream_to_file(speech_file_path)
 
 st.set_page_config(page_title="AI Text-to-Speech",
                    page_icon="🎙")
 
 st.title("Try OpenAI's Text-to-Speech 🎙")
+
 with st.expander("About this app"):
     st.info("""
     This is a personal project, not affliated with OpenAI.
